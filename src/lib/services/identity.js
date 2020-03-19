@@ -2,13 +2,15 @@ const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoExpress = require('cognito-express');
 const AuthToken = require('../models/auth-token');
 
+require('dotenv').config();
+
 global.fetch = require('node-fetch');
 
 const { CognitoUserPool } = AmazonCognitoIdentity;
 
 const poolData = {
-  UserPoolId : process.env.COGNITO_USER_POOL_ID || 'eu-west-1_QrtJjYOkV', // Your user pool id here
-  ClientId : process.env.COGNITO_APP_CLIENT_ID || '4omevt42ridcu840va6qmn99o8'
+  UserPoolId : process.env.COGNITO_USER_POOL_ID,
+  ClientId : process.env.COGNITO_APP_CLIENT_ID
 };
 
 const cognitoExpress = new CognitoExpress({
